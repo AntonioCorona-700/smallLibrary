@@ -1,4 +1,5 @@
 import AddBook from "./components/addBook.js";
+//import ModifyBook   from "./components/modifyBook";
 
 export default class View {
 
@@ -6,7 +7,9 @@ export default class View {
         this.model = null;
         this.table = document.getElementById('table');
         this.addBookForm = new AddBook();
-        this.addBookForm.onClick((t,a,y,c,d,tb) => this.addBook(t,a,y,c,d,tb) );  
+        this.addBookForm.onClick((t,a,y,c,d,tb) => this.addBook(t,a,y,c,d,tb) );
+        //this.addBookForm = new ModifyBook();
+        //this.modifyBookForm.onClick((id,option,update) => this.modifyBookForm.onClick(id,option,update));
     }
     setModel(model) {
         this.model = model;
@@ -27,14 +30,25 @@ export default class View {
         this.model.removeBook(id);
         document.getElementById(id).remove();
     }
-
-    changeItem(id,option,change){
-        this.model.changeItem(id,option,change)
-    }
     toogleCompleted(id){
         this.model.toogleCompleted(id);
     }
-
+    launchChange(id){
+        this.option = document.getElementById('option');
+        this.update = document.getElementById('update');
+        var cancelButton = document.getElementById('cancel');
+        var favDialog = document.getElementById('favDialog');
+        var submitButton=document.getElementById('submit')
+        favDialog.showModal();
+        cancelButton.addEventListener('click', function() {
+            favDialog.close();
+        });
+        submitButton.addEventListener('click', function() {
+            submitButton.onclick = () => this.toogleCompleted(book.id); //aqui quiero poner que haga el cambio, pero no se aún como.sda
+            favDialog.close();
+        });
+        
+    }
     createRow(book) {
         const row = this.table.getElementsByTagName('tbody')[0].insertRow();
         row.setAttribute('id', book.id);
@@ -65,7 +79,7 @@ export default class View {
         const modifyElement = document.createElement('button');
         modifyElement.classList.add('btn','btn-primary', 'mb-0');
         modifyElement.innerHTML = '<i class="fa fa-undo" aria-hidden="true"></i>'
-        modifyElement.onclick = () => this.changeItem(book.id,option,change) ;
+        modifyElement.onclick = () => this.launchChange(book.id) ;//lauchchallenge
         row.children[7].appendChild(modifyElement);
     
     }

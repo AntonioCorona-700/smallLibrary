@@ -11,7 +11,7 @@
       integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
       crossorigin="anonymous"
     />
-    <body style="background-color:#111134;">
+    <body style="background-color:#111134;" >
     <title>My Library</title>
   </head>
  
@@ -22,7 +22,7 @@
       </div>
     </nav>
     <main>
-      <div class="container pt-3">
+      <div class="container pt-3 text-white">
         <div class="alert alert-danger d-none" role="alert" id="alert"></div>  
           <div>
             <form class="row g-3" >
@@ -87,6 +87,34 @@
                   </table>
           </div>
       </div>
+
+      <dialog id="favDialog">
+        <form method="dialog">
+          <section>
+            <p><label for="changeItem">Change item designed:</label>
+            <select id="option">
+              <option selected disabled value="">Choose...</option>
+              <option value="title">Title Book</option>
+              <option value="author">Author</option>
+              <option value="year">Year</option>
+              <option value="country">Country</option>
+              <option value="keywords">Keywords</option>
+              <option value="typeBook">Type book</option>
+            </select></p>
+            <div class="col-md-0">
+              <label class="m-sm-0">Update</label>
+              <input type="text" class="form-control" id="update" placeholder="update" >
+        </div>
+          </section>
+          <menu>
+            <button id="cancel" type="reset">Cancel</button>
+            <button
+                    type="button"
+                    id="submit"
+                  >Update</button>
+          </menu>
+        </form>
+      </dialog>
     </main>
 
     <script src="js/index.js" type="module"></script>

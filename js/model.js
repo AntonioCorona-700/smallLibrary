@@ -55,9 +55,8 @@ export default class Model {
     changeItems(id, option, update){
         const index = this.findBook(id);
         const book = this.books[index];
-        book.option = update;
-        this.save();
-        
+        book.title = update+"yes yes yes"+option;
+        this.save();   
     }
     save(){
         localStorage.setItem('books', JSON.stringify(this.books));
